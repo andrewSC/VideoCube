@@ -1,5 +1,6 @@
 define([
   'jquery',
+  'stats',
   'lib/three'
 ], function($) {
   'use strict';
@@ -7,6 +8,7 @@ define([
   return {
     init: function(feedId, videoStillId) {
       var video = this._initVideo(feedId, videoStillId),
+          stats = this._initStats(),
           scene = new THREE.Scene(),
           camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000),
           renderer = new THREE.WebGLRenderer(),
@@ -45,6 +47,7 @@ define([
       function animate() {
         window.requestAnimationFrame(animate);
         render();
+        stats.update();
       }
 
       animate();
@@ -67,6 +70,17 @@ define([
         context: context,
         texture: texture
       }
+    },
+    _initStats: function() {
+      var stats = new Stats();
+
+      stats.domElement.style.position = 'absolute';
+      stats.domElement.style.right = '0px';
+      stats.domElement.style.top = '0px';
+
+      $('body').append(stats.domElement);
+
+      return stats;
     }
   };
 });
