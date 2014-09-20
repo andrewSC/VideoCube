@@ -6,8 +6,8 @@ define([
   'use strict';
 
   return {
-    init: function(feedId, videoStillId) {
-      var video = this._initVideo(feedId, videoStillId),
+    init: function(feedId, stillId) {
+      var video = this._initVideo(feedId, stillId),
           stats = this._initStats(),
           scene = new THREE.Scene(),
           camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000),
@@ -44,6 +44,7 @@ define([
 
         renderer.render(scene, camera);
       }
+
       function animate() {
         window.requestAnimationFrame(animate);
         render();

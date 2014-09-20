@@ -6,9 +6,8 @@ require([
   'use strict';
 
   var feedId = 'video-feed',
-      videoStillId = 'video-texture';
+      stillId = 'video-still';
 
   video.init(feedId);
-  cube.init(feedId, videoStillId);
-
+  cube.init(feedId, stillId);
 });
