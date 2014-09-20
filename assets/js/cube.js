@@ -6,8 +6,8 @@ require([
   'use strict';
 
   // Decided not to append the video specific declarations below for readibility sake
-  var video = document.getElementById('monitor'),
-      videoImage = document.getElementById('videoImage'),
+  var video = document.getElementById('video-feed'),
+      videoImage = document.getElementById('video-texture'),
       videoImageContext = videoImage.getContext('2d'),
       videoTexture = new THREE.Texture( videoImage ),
       movieMaterial;

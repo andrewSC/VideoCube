@@ -3,29 +3,22 @@ require([
 ], function($) {
   'use strict';
 
-  /* Adapted implementation from https://github.com/stemkoski/stemkoski.github.com/blob/master/Three.js/Webcam-Texture.html */
-
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   window.URL = window.URL || window.webkitURL;
 
-  var camVideo = document.getElementById('monitor');
+  var camVideo = document.getElementById('video-feed');
 
   if (!navigator.getUserMedia) {
-    $('#errorMessage').html('Sorry. <code>navigator.getUserMedia()</code> is not available.');
+    displayError('Sorry. <code>navigator.getUserMedia()</code> is not available.');
   }
   else {
     navigator.getUserMedia({video: true}, streamSuccess, streamFailure);
   }
 
   function streamSuccess(stream) {
-    if (window.URL) {
-      camVideo.src = window.URL.createObjectURL(stream);
-      console.debug(camVideo);
-    } else {
-      camVideo.src = stream;
-    }
+    camVideo.src = (window.URL) ? window.URL.createObjectURL(stream) : stream;
 
-    camVideo.onerror = function(e) {
+    camVideo.onerror = function() {
       stream.stop();
     }
 
@@ -33,11 +26,14 @@ require([
   }
 
   function streamFailure(e) {
-    var msg = (e.code === 1)
-              ? 'User denied access to use camera'
-              : 'No camera available';
+    var msg = (e.code === 1) ? 'User denied access to use camera' : 'No camera available';
 
-    $('#errorMessage').html('<b>' + msg + '</b>');
+    displayError(msg);
+  }
+
+  function displayError(msg) {
+    $('.js-error-message').html(msg);
+    $('.js-centered').removeClass('hide');
   }
 
 });

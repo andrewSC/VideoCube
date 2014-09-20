@@ -1,15 +1,17 @@
 <html>
   <head>
     <title>Andrew Scott Crerar | Experiments</title>
-    <link href="../../favicon.png" rel="shortcut icon" />
+    <link href="assets/img/favicon.png" rel="shortcut icon" />
     <link rel="stylesheet" type="text/css" href="assets/css/base.css" />
     <script src="assets/js/lib/require.js"></script>
     <script src="assets/js/config.js"></script>
   </head>
   <body>
-    <p id="errorMessage"></p>
-    <video id="monitor" autoplay width="400" height="400" style="display: none;"></video>
-    <canvas id="videoImage" width="400" height="400" style="display: none;"></canvas>
+    <div class="block hide js-centered">
+      <p class="js-error-message centered"></p>
+    </div>
+    <video id="video-feed" class="js-video-feed hide" autoplay></video>
+    <canvas id="video-texture" class="js-video-texture hide"></canvas>
   </body>
-  <script src="assets/js/cube.js"></script>
+  <script src="assets/js/main.js"></script>
 </html>
