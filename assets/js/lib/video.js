@@ -35,7 +35,7 @@ define([
         displayError('Sorry. <code>navigator.getUserMedia()</code> is not available.');
       }
       else {
-        navigator.getUserMedia({video: true}, this.streamSuccess.bind(this), this.streamFailure.bind(this));
+        navigator.getUserMedia({video: true}, streamSuccess.bind(this), streamFailure);
       }
     }
   };
